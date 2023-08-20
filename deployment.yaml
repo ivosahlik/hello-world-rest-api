@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: hello-world-rest-api
+  name: hello-world-rest-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-world-rest-api
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: hello-world-rest-api
+    spec:
+      containers:
+        - name: hello-world-rest-api
+          image: docker.io/ivosahlik/hello-world-rest-api:0.0.1-SNAPSHOT
+          resources:
+            requests:
+              cpu: 100m
+              memory: 512Mi
+            limits:
+              cpu: 500m
+              memory: 1024Mi
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-world-rest-api
+  labels:
+    app: hello-world-rest-api
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8080
+      protocol: TCP
+  selector:
+    app: hello-world-rest-api

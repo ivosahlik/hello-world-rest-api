@@ -1,0 +1,22 @@
+application:
+  name:
+  host:
+  port:
+  target:
+    port:
+
+replicaCount: 1
+restartPolicy: Always
+
+image:
+  repository:
+  tag:
+  pullPolicy:
+
+resources:
+  limits:
+    cpu: 1
+    memory: 1Gi
+  requests:
+    cpu: 200m
+    memory: 256Mi

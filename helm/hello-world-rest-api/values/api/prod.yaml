@@ -1,0 +1,19 @@
+replicaCount: 1
+
+image:
+  repository: docker.io/ivosahlik/hello-world-rest-api
+  tag: 0.0.1
+  pullPolicy: Always
+
+application:
+  port: 8082
+  target:
+    port: 8080
+
+resources:
+  limits:
+    cpu: 800m
+    memory: 512Mi
+  requests:
+    cpu: 200m
+    memory: 256Mi
